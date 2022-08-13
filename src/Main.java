@@ -9,7 +9,7 @@ public class Main {
                 new Product(170, "Печенье")};
         System.out.println("Добро пожаловать магазин! Обратите внимание на текущий ассортимент товаров:");
         for (int i = 0; i < products.length; i++) {
-            System.out.println(i + ". " + products[i].getName() + " по цене " + products[i].getPrice() + " руб.");
+            System.out.println((i+1) + ". " + products[i].getName() + " по цене " + products[i].getPrice() + " руб.");
         }
         while (true) {
             try {
@@ -26,7 +26,7 @@ public class Main {
                     System.out.println("Ошибка в формате выбора продукта");
                     continue;
                 }
-                int prod = Integer.parseInt(userChoice[0]);
+                int prod = Integer.parseInt(userChoice[0]) - 1;
                 int count = Integer.parseInt(userChoice[1]);
                 if (prod >= products.length || prod < 0) {
                     System.out.println("Такого продукта нет в ассортименте");
