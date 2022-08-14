@@ -1,7 +1,7 @@
 public class Product {
     private final int price;
     private final String name;
-    private int count;
+    private int count = 0;
 
     public Product(int price, String name) {
         this.price = price;
@@ -17,7 +17,7 @@ public class Product {
     }
 
     public void addCount(int count) {
-        this.count = count;
+        this.count = this.count + count;
     }
 
     public int getCount() {
