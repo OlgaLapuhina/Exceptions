@@ -33,10 +33,13 @@ public class Main {
                     continue;
                 }
                 if (count < 0) {
-                    System.out.println("Вы ввели неправильное количество товара: " + count);
-                    continue;
+                    System.out.println("Вы уменьшили количество товара " + products[prod].getName() + " на " + count);
+                } else if (count == 0) {
+                    System.out.println("Вы удалили товар " + products[prod].getName() + " из корзины");
+                    products[prod] = new Product(0, null);
                 }
-                products[prod].addCount(count);
+
+                    products[prod].addCount(count);
             } catch (NumberFormatException e) {
                 System.out.println("Ошибка ввода, вы ввели не число");
                 continue;
