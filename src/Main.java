@@ -7,9 +7,14 @@ public class Main {
         Product[] products = {new Product(40, "Хлеб"), new Product(70, "Молоко"),
                 new Product(150, "Сыр"), new Product(400, "Колбаса"),
                 new Product(170, "Печенье")};
+        String [] sale = {"Хлеб", "Сыр", "Печенье"};
         System.out.println("Добро пожаловать магазин! Обратите внимание на текущий ассортимент товаров:");
         for (int i = 0; i < products.length; i++) {
-            System.out.println(i + ". " + products[i].getName() + " по цене " + products[i].getPrice() + " руб.");
+            System.out.println((i+1) + ". " + products[i].getName() + " по цене " + products[i].getPrice() + " руб.");
+        }
+        System.out.println("Сегодняшная скидка 3 по цене 2х распространяется на следующие товары:");
+        for (int i = 0; i < sale.length; i++) {
+            System.out.println((i+1) + ". " + sale[i]);
         }
         while (true) {
             try {
@@ -26,7 +31,7 @@ public class Main {
                     System.out.println("Ошибка в формате выбора продукта");
                     continue;
                 }
-                int prod = Integer.parseInt(userChoice[0]);
+                int prod = Integer.parseInt(userChoice[0]) - 1;
                 int count = Integer.parseInt(userChoice[1]);
                 if (prod >= products.length || prod < 0) {
                     System.out.println("Такого продукта нет в ассортименте");
@@ -44,9 +49,17 @@ public class Main {
         }
         System.out.println("Ваша корзина:");
         for (Product product : products) {
+            int discount =0;
             if (product.getCount() != 0) {
+                for (String sales : sale) {
+                    if (product.getName().equals(sales)) {
+                        discount = (product.getCount() / 3) * product.getPrice();
+                        break;
+                    }
+
+                }
                 System.out.println(product.getName() + " в количестве " + product.getCount() + " шт., " + "стоимостью "
-                        + product.getPrice() + " рублей. Итого = " + product.getPrice() * product.getCount() + " рублей.");
+                        + product.getPrice() + " рублей. Итого = " + ((product.getPrice() * product.getCount()) - discount ) + " рублей.");
                 summary += product.getPrice() * product.getCount();
             }
         }
