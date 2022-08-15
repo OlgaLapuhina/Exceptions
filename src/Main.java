@@ -60,7 +60,7 @@ public class Main {
                 }
                 System.out.println(product.getName() + " в количестве " + product.getCount() + " шт., " + "стоимостью "
                         + product.getPrice() + " рублей. Итого = " + ((product.getPrice() * product.getCount()) - discount ) + " рублей.");
-                summary += product.getPrice() * product.getCount();
+                summary += (product.getPrice() * product.getCount()) - discount;
             }
         }
         System.out.println("Общая сумма: " + summary + " рублей.");
