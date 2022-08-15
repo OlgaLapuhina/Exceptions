@@ -10,7 +10,7 @@ public class Main {
         String [] sale = {"Хлеб", "Сыр", "Печенье"};
         System.out.println("Добро пожаловать магазин! Обратите внимание на текущий ассортимент товаров:");
         for (int i = 0; i < products.length; i++) {
-            System.out.println((i+1) + ". " + products[i].getName() + " по цене " + products[i].getPrice() + " руб.");
+            System.out.println((i + 1) + ". " + products[i].getName() + " по цене " + products[i].getPrice() + " руб.");
         }
         System.out.println("Сегодняшная скидка 3 по цене 2х распространяется на следующие товары:");
         for (int i = 0; i < sale.length; i++) {
@@ -37,9 +37,14 @@ public class Main {
                     System.out.println("Такого продукта нет в ассортименте");
                     continue;
                 }
-                if (count < 0) {
-                    System.out.println("Вы ввели неправильное количество товара: " + count);
+                if ((products[prod].getCount() + count) <= -1) {
+                    System.out.println("Количество товара " + products[prod].getName() + " будет отрицательным");
                     continue;
+                } else if (count < 0) {
+                    System.out.println("Вы уменьшили количество товара " + products[prod].getName() + " на " + (-count));
+                } else if (count == 0) {
+                    System.out.println("Вы удалили товар " + products[prod].getName() + " из корзины");
+                    products[prod].addCount(-products[prod].getCount());
                 }
                 products[prod].addCount(count);
             } catch (NumberFormatException e) {
